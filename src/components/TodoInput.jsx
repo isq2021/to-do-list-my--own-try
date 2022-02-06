@@ -23,6 +23,7 @@ export default class TodoInput extends Component {
                        autofocus="" 
                        value={item}
                        onChange = {handleChange}
+                       required
                        />
                     
             </div>

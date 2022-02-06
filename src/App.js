@@ -16,9 +16,15 @@ class App extends Component {
       items: [],
       id: uuid(),
       item: '',
-      editItem:false
+      editItem:false,
+      isDone:false
     };
   }
+
+  checkIsDone=() =>{
+    
+  }
+  
 
   handleAddTaskButton = e =>{
     e.preventDefault()
@@ -27,6 +33,7 @@ class App extends Component {
       id:this.state.id,
       item:this.state.item
     }
+    
 
     const updatedItems = [...this.state.items,newItem];
 
@@ -36,9 +43,17 @@ class App extends Component {
       id:uuid(),
       editItem:false
     })
+
+    
+    
    
 
   }
+
+  
+
+
+
   handleChange =(e)=>{
     this.setState({
       item:e.target.value});
@@ -96,6 +111,7 @@ class App extends Component {
         clearList ={this.clearList}
         handleDelete = {this.handleDelete}
         handleEdit = {this.handleEdit}
+        checkIsDone = {this.checkIsDone}
 
         />
         

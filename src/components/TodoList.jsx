@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 
 export default class TodoList extends Component {
   render() {
-    const {items,clearList,handleDelete,handleEdit} = this.props
+    const {items,clearList,handleDelete,handleEdit,checkIsDone,handleAddTaskButton} = this.props
     return (
     <>
         
@@ -25,6 +25,8 @@ export default class TodoList extends Component {
                   title = {item.item} 
                   handleDelete = {() => handleDelete(item.id)}
                   handleEdit = {() => handleEdit(item.id)}
+                  checkIsDone = {() => checkIsDone (item.id)}
+                  handleAddTaskButton = {handleAddTaskButton}
                   />
 
                 )
