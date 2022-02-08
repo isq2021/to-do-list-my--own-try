@@ -9,8 +9,8 @@ import { v4 as uuid } from 'uuid';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   
     this.state = {
       items: [],
@@ -21,9 +21,18 @@ class App extends Component {
     };
   }
 
-  checkIsDone=() =>{
+  checkIsDone=(id) =>{
+    const result = this.state.items.map((item) => {
+      if (item.id === id) {
+          item.isDone = !item.isDone;
+      }
+      return item;
+  });
+  this.setState({items:result});
     
+
   }
+ 
   
 
   handleAddTaskButton = e =>{
