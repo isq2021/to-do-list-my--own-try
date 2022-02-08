@@ -21,17 +21,7 @@ class App extends Component {
     };
   }
 
-  checkIsDone=(id) =>{
-    const result = this.state.items.map((item) => {
-      if (item.id === id) {
-          item.isDone = !item.isDone;
-      }
-      return item;
-  });
-  this.setState({items:result});
-    
-
-  }
+ 
  
   
 
@@ -99,6 +89,17 @@ class App extends Component {
 
 
     })
+  }
+  checkIsDone=(id) =>{
+    const result = this.state.items.map((item) => {
+      if (item.id === id) {
+          item.isDone = !item.isDone;
+      }
+      return item;
+  });
+  this.setState({items:result});
+    
+
   }
  
 

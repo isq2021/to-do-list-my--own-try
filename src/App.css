@@ -270,6 +270,7 @@ li h6 {
 .addtaskbtnedit {
     background: #df0be6;
     color: white;
+    text-decoration: line-through;
 }
 
 .addtaskbtn {
