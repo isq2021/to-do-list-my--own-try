@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 
 export default class TodoList extends Component {
+
+  
   render() {
-    const {items,clearList,handleDelete,handleEdit,checkIsDone} = this.props
+    const {items,clearList,handleDelete,handleEdit,checkIsDone,updateItem} = this.props
     return (
     <>
         
@@ -28,11 +30,13 @@ export default class TodoList extends Component {
                   handleEdit = {() => handleEdit(item.id)}
                   checkIsDone = {() => checkIsDone(item.id)}
                   
+                  
                   />
 
                 )
               })
             }
+            
             
             <div className='task__controls'>
                     <button id="clearlist" onClick={clearList}>

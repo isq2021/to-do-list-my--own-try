@@ -25,23 +25,27 @@ class App extends Component {
  
   
 
-  handleAddTaskButton = e =>{
+  handleAddTaskButton = async (e) =>{
     e.preventDefault()
 
-    const newItem = {
+     const newItem = {
       id:this.state.id,
-      item:this.state.item
+      item:this.state.item,
+      isDone:false
     }
     
 
-    const updatedItems = [...this.state.items,newItem];
+     const updatedItems = [...this.state.items,newItem];
 
-    this.setState({
+
+     await this.setState({
       items:updatedItems,
       item: "",
       id:uuid(),
       editItem:false
+      
     })
+    localStorage.setItem("items",JSON.stringify(this.state.items))
 
     
     
@@ -63,6 +67,7 @@ class App extends Component {
     this.setState({
       items: []
     })
+    localStorage.clear()
   }
 
   handleDelete = id => {
@@ -90,6 +95,8 @@ class App extends Component {
 
     })
   }
+
+
   checkIsDone=(id) =>{
     const result = this.state.items.map((item) => {
       if (item.id === id) {
@@ -97,11 +104,28 @@ class App extends Component {
       }
       return item;
   });
-  this.setState({items:result});
+   this.setState({items:result});
+   
+  
     
 
   }
- 
+
+  componentDidMount = () =>{
+    const items = localStorage.getItem('items')
+    if(items) {
+      const savedItems = JSON.parse(items)
+      this.setState({
+        items : savedItems
+      })
+
+    }else {
+      console.log('no items')
+
+    }
+  }
+
+
 
   render() {
     return (
@@ -122,8 +146,10 @@ class App extends Component {
         handleDelete = {this.handleDelete}
         handleEdit = {this.handleEdit}
         checkIsDone = {this.checkIsDone}
+        
 
         />
+        
         
         
         
