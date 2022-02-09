@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class TodoInput extends Component {
   render() {
-      const {item,handleChange,handleAddTaskButton,editItem,handleCompleted} = this.props
+      const {item,handleChange,handleAddTaskButton,editItem,handleCompleted,handleUncompleted,handleAll} = this.props
 
 
     return (
@@ -27,19 +27,11 @@ export default class TodoInput extends Component {
                        />
                     
             </div>
-            <div>
-              <h1><button onClick={handleCompleted}>completed</button></h1>
-            </div>
-            <div>
-              <h1><button>uncompleted</button></h1>
-            </div>
-            <div>
-              <h1><button>ALL</button></h1>
-            </div>
             <div className='task__controls'>
                     <button
                      id="addtaskbtn"
-                     className={editItem ? "addtaskbtnedit" : "addtaskbtn"}
+                     className={editItem ? "addtaskbtnedit2" : "addtaskbtn"}
+                     type="submit"
                      >
                         <img src="https://raw.githubusercontent.com/bhupenderhere/to-do-list-web-application/658cbe1ec20867d446ab3b919d52d4dbb5fa833b/images/svg/add.svg" alt="add" />
                         
@@ -47,6 +39,16 @@ export default class TodoInput extends Component {
                     </button>
 
             </div>
+            <div>
+              <h1><button className='btn2' onClick={handleCompleted} type="button">completed  </button></h1>
+            </div>
+            <div>
+              <h1><button className='btn2' onClick={handleUncompleted} type="button">uncompleted</button></h1>
+            </div>
+            <div>
+              <h1><button className='btn2' onClick={handleAll} type="button">ALL</button></h1>
+            </div>
+            
 
        </form>
            

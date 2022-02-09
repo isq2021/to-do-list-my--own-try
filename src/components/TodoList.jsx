@@ -5,7 +5,7 @@ export default class TodoList extends Component {
 
   
   render() {
-    const {items,clearList,handleDelete,handleEdit,checkIsDone,completed} = this.props
+    const {items,clearList,handleDelete,handleEdit,checkIsDone,handleSearch} = this.props
     return (
     <>
         
@@ -15,7 +15,7 @@ export default class TodoList extends Component {
          <div class="right__side">
             <div class="search__bar">
               <form class="d-flex align-items-center justify-content-center">
-                <input placeholder="Search Task" id="searchtextbox" />
+                <input placeholder="Search Task" id="searchtextbox" onChange ={handleSearch} />
               </form>
             </div>
             <ul className="to__do__list"> 
@@ -42,7 +42,7 @@ export default class TodoList extends Component {
               })
             }
             
-            <div>{completed}</div>
+            
             <div className='task__controls'>
                     <button id="clearlist" onClick={clearList}>
                         
