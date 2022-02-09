@@ -19,7 +19,8 @@ class App extends Component {
       editItem:false,
       isDone:false,
       completed: [],
-      uncompleted:[]
+      uncompleted:[],
+      all:[]
 
     };
   }
@@ -33,7 +34,8 @@ class App extends Component {
    
     
     this.setState({
-      items:compfiltered
+      items:compfiltered,
+      completed:compfiltered
 
     })
 
@@ -49,6 +51,7 @@ class App extends Component {
     
     this.setState({
       items:uncompfiltered,
+      uncompleted:uncompfiltered
       
 
     })
@@ -60,7 +63,8 @@ class App extends Component {
     const all = localStorage.getItem('items');
     const savedAll = JSON.parse(all);
     this.setState({
-      items:savedAll
+      items:savedAll,
+      all:savedAll
     })
   }
   
@@ -82,6 +86,8 @@ class App extends Component {
 
      await this.setState({
       items:updatedItems,
+      all:updatedItems,
+      uncompleted:updatedItems,
       item: "",
       id:uuid(),
       editItem:false,
@@ -189,6 +195,7 @@ class App extends Component {
 
 
   }
+  
 
 
   render() {
@@ -206,6 +213,13 @@ class App extends Component {
         handleCompleted ={this.handleCompleted}
         handleUncompleted ={this.handleUncompleted}
         handleAll ={this.handleAll}
+        items={this.state.items}
+        isDone ={this.state.isDone}
+        completed = {this.state.completed}
+        uncompleted ={this.state.uncompleted}
+        all={this.state.all}
+        
+        
         
          />
         <TodoList 
