@@ -90,7 +90,6 @@ h1 {
     padding: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -131,7 +130,7 @@ h1 {
 
 button {
     width: 90%;
-    margin: auto;
+    margin: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -160,7 +159,7 @@ button {
     justify-content: center;
     align-items: center;
     padding: 15px 38px;
-    border-radius: 16px;
+    border-radius: 10px;
     border: 1px solid transparent;
     color: #0f0808;
     background-color: #1DC9A0;
@@ -308,7 +307,18 @@ li h6 {
 }
 
 .addtaskbtn {
-    background: burlywood !important;
+    background: burlywood;
+}
+
+.addtaskbtn1 {
+    background: linear-gradient(to right, #dd5e89, #0d72df);
+    color: #fff !important;
+    height: 50px;
+}
+
+.addtaskbtn1 span {
+    color: rgb(238, 225, 189);
+    text-transform: uppercase;
 }
 
 li span {

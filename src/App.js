@@ -194,7 +194,7 @@ class App extends Component {
   render() {
     return (
       <>
-      <h1>Fenix</h1>
+      
       <div id='app' className='position-absolute m-auto'>
         
        

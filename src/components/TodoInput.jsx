@@ -8,13 +8,7 @@ export default class TodoInput extends Component {
     return (
        <>
 
-       <form className="
-          left__side
-          d-flex
-          align-items-center
-          justify-content-between
-          flex-column
-        " onSubmit={handleAddTaskButton} >
+       <form className="left__side" onSubmit={handleAddTaskButton} >
              <div className="task__input">
                     <input
                      type="text"
@@ -30,7 +24,7 @@ export default class TodoInput extends Component {
             <div className='task__controls'>
                     <button
                      id="addtaskbtn"
-                     className={editItem ? "addtaskbtnedit2" : "addtaskbtn"}
+                     className={editItem ? "addtaskbtnedit2" : "addtaskbtn1"}
                      type="submit"
                      >
                         <img src="https://raw.githubusercontent.com/bhupenderhere/to-do-list-web-application/658cbe1ec20867d446ab3b919d52d4dbb5fa833b/images/svg/add.svg" alt="add" />
@@ -39,8 +33,11 @@ export default class TodoInput extends Component {
                     </button>
 
             </div>
-            <div>
+            <div>{
               <h1><button className='btn2' onClick={handleCompleted} type="button">completed  </button></h1>
+              
+              }
+              
             </div>
             <div>
               <h1><button className='btn2' onClick={handleUncompleted} type="button">uncompleted</button></h1>
@@ -48,6 +45,7 @@ export default class TodoInput extends Component {
             <div>
               <h1><button className='btn2' onClick={handleAll} type="button">ALL</button></h1>
             </div>
+            
             
 
        </form>
