@@ -25,15 +25,43 @@ class App extends Component {
   }
 
   handleCompleted = () =>{
-    const filteredCompleted = this.state.items.filter(item => item.isDone)
+    const comp = localStorage.getItem('items');
+    const savedcomp = JSON.parse(comp);
+    
+    const compfiltered = savedcomp.filter(item => item.isDone===true);
+    
+   
     
     this.setState({
-      completed:filteredCompleted
+      items:compfiltered
 
     })
 
     
 
+  }
+
+  handleUncompleted = () =>{
+    const uncomp = localStorage.getItem('items');
+    const savedUncomp = JSON.parse(uncomp);
+    
+    const uncompfiltered = savedUncomp.filter(item => item.isDone===false);
+    
+    this.setState({
+      items:uncompfiltered,
+      
+
+    })
+
+    
+
+  }
+  handleAll =() => {
+    const all = localStorage.getItem('items');
+    const savedAll = JSON.parse(all);
+    this.setState({
+      items:savedAll
+    })
   }
   
  
@@ -56,7 +84,8 @@ class App extends Component {
       items:updatedItems,
       item: "",
       id:uuid(),
-      editItem:false
+      editItem:false,
+      
       
     })
     localStorage.setItem("items",JSON.stringify(this.state.items))
@@ -85,10 +114,14 @@ class App extends Component {
   }
 
   handleDelete = id => {
+    
+    
     const filteredItems = this.state.items.filter(item => item.id !==id)
     this.setState({
       items:filteredItems
     })
+    localStorage.setItem("items",JSON.stringify(filteredItems))
+    
 
   }
 
@@ -119,6 +152,7 @@ class App extends Component {
       return item;
   });
    this.setState({items:result});
+   localStorage.setItem("items",JSON.stringify(this.state.items))
    
   
     
@@ -139,6 +173,22 @@ class App extends Component {
     }
   }
 
+  handleSearch =(e)=>{
+   const searchText =  e.target.value.toLowerCase();
+   const getForSearch = localStorage.getItem('items');
+    const savedInfoForSearch = JSON.parse(getForSearch);
+   const SearchResult = this.state.items.filter(e => {
+     let searchFilter = e.item.toLowerCase()
+     return searchFilter.indexOf(searchText) !== -1
+   })
+   this.setState({
+    items : SearchResult
+  })
+   
+   
+
+
+  }
 
 
   render() {
@@ -154,6 +204,9 @@ class App extends Component {
         handleAddTaskButton = {this.handleAddTaskButton}
         editItem = {this.state.editItem}
         handleCompleted ={this.handleCompleted}
+        handleUncompleted ={this.handleUncompleted}
+        handleAll ={this.handleAll}
+        
          />
         <TodoList 
         items = {this.state.items}
@@ -161,9 +214,12 @@ class App extends Component {
         handleDelete = {this.handleDelete}
         handleEdit = {this.handleEdit}
         checkIsDone = {this.checkIsDone}
-        handleCompleted ={this.handleCompleted}
+        
         completedItems = {this.state.completed}
+
         isDone ={this.state.isDone}
+        handleSearch ={this.handleSearch}
+        
         
         
 
