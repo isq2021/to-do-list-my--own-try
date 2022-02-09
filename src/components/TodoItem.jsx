@@ -14,7 +14,7 @@ export default class TodoItem extends Component {
     return (
         <>
            
-            <li className = {this.props.item.isDone ? "addtaskbtnedit" : "addtaskbtn"} >
+            <li className = {this.props.item.isDone  ? "addtaskbtnedit" : "addtaskbtn"} >
                 
                 <span className="icon" onClick={handleEdit}  ><i class="fa fa-pencil" ></i></span>
                 <span onClick={checkIsDone}   ><i class="fa fa-check" ></i></span>

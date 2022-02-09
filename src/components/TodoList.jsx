@@ -5,7 +5,7 @@ export default class TodoList extends Component {
 
   
   render() {
-    const {items,clearList,handleDelete,handleEdit,checkIsDone,updateItem} = this.props
+    const {items,clearList,handleDelete,handleEdit,checkIsDone,completed} = this.props
     return (
     <>
         
@@ -19,7 +19,11 @@ export default class TodoList extends Component {
               </form>
             </div>
             <ul className="to__do__list"> 
+            
             {
+
+
+
               items.map(item => {
                 return(
                   <TodoItem 
@@ -31,13 +35,14 @@ export default class TodoList extends Component {
                   checkIsDone = {() => checkIsDone(item.id)}
                   
                   
+                  
                   />
 
                 )
               })
             }
             
-            
+            <div>{completed}</div>
             <div className='task__controls'>
                     <button id="clearlist" onClick={clearList}>
                         

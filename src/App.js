@@ -17,11 +17,25 @@ class App extends Component {
       id: uuid(),
       item: '',
       editItem:false,
-      isDone:false
+      isDone:false,
+      completed: [],
+      uncompleted:[]
+
     };
   }
 
- 
+  handleCompleted = () =>{
+    const filteredCompleted = this.state.items.filter(item => item.isDone)
+    
+    this.setState({
+      completed:filteredCompleted
+
+    })
+
+    
+
+  }
+  
  
   
 
@@ -139,6 +153,7 @@ class App extends Component {
         handleChange={this.handleChange}
         handleAddTaskButton = {this.handleAddTaskButton}
         editItem = {this.state.editItem}
+        handleCompleted ={this.handleCompleted}
          />
         <TodoList 
         items = {this.state.items}
@@ -146,6 +161,10 @@ class App extends Component {
         handleDelete = {this.handleDelete}
         handleEdit = {this.handleEdit}
         checkIsDone = {this.checkIsDone}
+        handleCompleted ={this.handleCompleted}
+        completedItems = {this.state.completed}
+        isDone ={this.state.isDone}
+        
         
 
         />

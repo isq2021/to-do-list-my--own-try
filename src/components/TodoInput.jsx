@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class TodoInput extends Component {
   render() {
-      const {item,handleChange,handleAddTaskButton,editItem} = this.props
+      const {item,handleChange,handleAddTaskButton,editItem,handleCompleted} = this.props
 
 
     return (
@@ -26,6 +26,15 @@ export default class TodoInput extends Component {
                        required
                        />
                     
+            </div>
+            <div>
+              <h1><button onClick={handleCompleted}>completed</button></h1>
+            </div>
+            <div>
+              <h1><button>uncompleted</button></h1>
+            </div>
+            <div>
+              <h1><button>ALL</button></h1>
             </div>
             <div className='task__controls'>
                     <button
