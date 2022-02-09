@@ -177,7 +177,7 @@ class App extends Component {
    const searchText =  e.target.value.toLowerCase();
    const getForSearch = localStorage.getItem('items');
     const savedInfoForSearch = JSON.parse(getForSearch);
-   const SearchResult = this.state.items.filter(e => {
+   const SearchResult = savedInfoForSearch.filter(e => {
      let searchFilter = e.item.toLowerCase()
      return searchFilter.indexOf(searchText) !== -1
    })
