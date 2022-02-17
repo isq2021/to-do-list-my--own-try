@@ -17,61 +17,21 @@ class App extends Component {
       id: uuid(),
       item: '',
       editItem:false,
-      isDone:false,
-      completed: [],
-      uncompleted:[],
-      all:[]
+      isDone:false
+      
 
     };
   }
 
-  handleCompleted = () =>{
-    const comp = localStorage.getItem('items');
-    const savedcomp = JSON.parse(comp);
-    
-    const compfiltered = savedcomp.filter(item => item.isDone===true);
-    
-   
-    
+
+/* take info from the input to the state */
+  handleChange =(e)=>{
     this.setState({
-      items:compfiltered,
-      completed:compfiltered
-
-    })
-
-    
+      item:e.target.value});
 
   }
-
-  handleUncompleted = () =>{
-    const uncomp = localStorage.getItem('items');
-    const savedUncomp = JSON.parse(uncomp);
-    
-    const uncompfiltered = savedUncomp.filter(item => item.isDone===false);
-    
-    this.setState({
-      items:uncompfiltered,
-      uncompleted:uncompfiltered
-      
-
-    })
-
-    
-
-  }
-  handleAll =() => {
-    const all = localStorage.getItem('items');
-    const savedAll = JSON.parse(all);
-    this.setState({
-      items:savedAll,
-      all:savedAll
-    })
-  }
-  
- 
-  
-
-  handleAddTaskButton = async (e) =>{
+/* add task button function */
+  handleAddTaskButton =  (e) =>{
     e.preventDefault()
 
      const newItem = {
@@ -84,17 +44,16 @@ class App extends Component {
      const updatedItems = [...this.state.items,newItem];
 
 
-     await this.setState({
+      this.setState({
       items:updatedItems,
-      all:updatedItems,
-      uncompleted:updatedItems,
+      
       item: "",
       id:uuid(),
       editItem:false,
       
       
     })
-    localStorage.setItem("items",JSON.stringify(this.state.items))
+     localStorage.setItem("items",JSON.stringify(this.state.items))
 
     
     
@@ -102,23 +61,7 @@ class App extends Component {
 
   }
 
-  
-
-
-
-  handleChange =(e)=>{
-    this.setState({
-      item:e.target.value});
-
-  }
-
-  clearList =() =>{
-    this.setState({
-      items: []
-    })
-    localStorage.clear()
-  }
-
+/* delete task by id  */
   handleDelete = id => {
     
     
@@ -130,6 +73,9 @@ class App extends Component {
     
 
   }
+
+
+  /* edit each task*/
 
   handleEdit = id =>{
     const filteredItems = this.state.items.filter(item => item.id !==id)
@@ -148,8 +94,7 @@ class App extends Component {
 
     })
   }
-
-
+/*  button for completed */
   checkIsDone=(id) =>{
     const result = this.state.items.map((item) => {
       if (item.id === id) {
@@ -165,7 +110,92 @@ class App extends Component {
 
   }
 
-  componentDidMount = () =>{
+/* clear all tasks  */
+  clearList =() =>{
+    this.setState({
+      items: []
+    })
+    localStorage.clear()
+  }
+
+  /* search section */
+  handleSearch =(e)=>{
+    const searchText =  e.target.value.toLowerCase();
+    const getForSearch = localStorage.getItem('items');
+     const savedInfoForSearch = JSON.parse(getForSearch);
+    const SearchResult = savedInfoForSearch.filter(e => {
+      let searchFilter = e.item.toLowerCase()
+      return searchFilter.indexOf(searchText) !== -1
+    })
+    this.setState({
+     items : SearchResult
+   })
+    
+    
+ 
+ /* completed button */
+   }
+
+  handleCompleted = () =>{
+    const comp = localStorage.getItem('items');
+    const savedcomp = JSON.parse(comp);
+    
+    const compfiltered = savedcomp.filter(item => item.isDone===true);
+    
+   
+    
+    this.setState({
+      items:compfiltered
+      
+      
+
+    })
+
+    
+
+  }
+  /* uncompleted button */
+
+  handleUncompleted = () =>{
+    const uncomp = localStorage.getItem('items');
+    const savedUncomp = JSON.parse(uncomp);
+    
+    const uncompfiltered = savedUncomp.filter(item => item.isDone===false);
+    
+    this.setState({
+      items:uncompfiltered
+      
+
+    })
+
+    
+
+  }
+  /* show all button */
+  handleAll =() => {
+    const all = localStorage.getItem('items');
+    const savedAll = JSON.parse(all);
+    this.setState({
+      items:savedAll
+    })
+  }
+  
+ 
+  
+
+  
+
+  
+
+
+
+  
+  
+
+
+ 
+
+  /* componentDidMount = () =>{
     const items = localStorage.getItem('items')
     if(items) {
       const savedItems = JSON.parse(items)
@@ -177,24 +207,9 @@ class App extends Component {
       console.log('no items')
 
     }
-  }
+  } */
 
-  handleSearch =(e)=>{
-   const searchText =  e.target.value.toLowerCase();
-   const getForSearch = localStorage.getItem('items');
-    const savedInfoForSearch = JSON.parse(getForSearch);
-   const SearchResult = savedInfoForSearch.filter(e => {
-     let searchFilter = e.item.toLowerCase()
-     return searchFilter.indexOf(searchText) !== -1
-   })
-   this.setState({
-    items : SearchResult
-  })
-   
-   
-
-
-  }
+ 
   
 
 
@@ -215,9 +230,7 @@ class App extends Component {
         handleAll ={this.handleAll}
         items={this.state.items}
         isDone ={this.state.isDone}
-        completed = {this.state.completed}
-        uncompleted ={this.state.uncompleted}
-        all={this.state.all}
+        
         
         
         
@@ -229,7 +242,7 @@ class App extends Component {
         handleEdit = {this.handleEdit}
         checkIsDone = {this.checkIsDone}
         
-        completedItems = {this.state.completed}
+        
 
         isDone ={this.state.isDone}
         handleSearch ={this.handleSearch}
